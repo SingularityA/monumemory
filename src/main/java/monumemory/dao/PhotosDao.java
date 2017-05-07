@@ -5,7 +5,7 @@ import monumemory.entities.PhotoEntity;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
-public interface PhotoDao {
+public interface PhotosDao {
     @Results(
             id = "Photo",
             value = {
@@ -20,6 +20,10 @@ public interface PhotoDao {
     @Select("SELECT * FROM photos WHERE id=#{id}")
     @ResultMap("Photo")
     PhotoEntity find(Integer id);
+
+    @Select("SELECT * FROM photos WHERE photo_set_id=#{photoSetId}")
+    @ResultMap("Photo")
+    List<PhotoEntity> findByPhotoSetId(Integer photoSetId);
 
     @Insert("INSERT INTO photos (name, path, photo_set_id) VALUES (#{name}, #{path}, #{photoSetId})")
     @Options(useGeneratedKeys = true, keyColumn = "id")
