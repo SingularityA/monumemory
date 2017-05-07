@@ -5,7 +5,7 @@ import monumemory.entities.MonumentEntity;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
-public interface MonumentDao {
+public interface MonumentsDao {
     @Results(
             id = "Monument",
             value = {
