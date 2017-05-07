@@ -1,6 +1,8 @@
 package monumemory.models.empty;
 
 import java.util.List;
+
+import monumemory.entities.MonumentEntity;
 import monumemory.models.MonumentModelInterface;
 import monumemory.models.PhotoSetModelInterface;
 import monumemory.models.exceptions.CallMethodOnEmptyModelException;
@@ -45,6 +47,10 @@ public class MonumentModelEmpty extends AbstractModelEmpty implements MonumentMo
     }
 
     public void setPhotoSets(List<PhotoSetModelInterface> photoSets) {
+        throw new CallMethodOnEmptyModelsListException();
+    }
+
+    public void map(MonumentEntity monumentEntity) {
         throw new CallMethodOnEmptyModelsListException();
     }
 }
