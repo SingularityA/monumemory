@@ -1,6 +1,7 @@
 package monumemory.models;
 
 import java.util.List;
+import monumemory.entities.PhotoSetEntity;
 
 public interface PhotoSetModelInterface extends ModelInterface {
 
@@ -17,4 +18,6 @@ public interface PhotoSetModelInterface extends ModelInterface {
     List<PhotoModelInterface> getPhotos();
 
     void setPhotos(List<PhotoModelInterface> photos);
+
+    void map(PhotoSetEntity photoSetEntity);
 }

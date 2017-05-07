@@ -1,5 +1,7 @@
 package monumemory.models;
 
+import monumemory.entities.MonumentEntity;
+
 import java.util.List;
 
 public interface MonumentModelInterface extends ModelInterface {
@@ -21,4 +23,6 @@ public interface MonumentModelInterface extends ModelInterface {
     List<PhotoSetModelInterface> getPhotoSets();
 
     void setPhotoSets(List<PhotoSetModelInterface> photoSets);
+
+    void map(MonumentEntity monumentEntity);
 }

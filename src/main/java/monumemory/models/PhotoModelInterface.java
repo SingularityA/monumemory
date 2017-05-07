@@ -1,5 +1,7 @@
 package monumemory.models;
 
+import monumemory.entities.PhotoEntity;
+
 public interface PhotoModelInterface extends ModelInterface {
 
     void setId(Integer id);
@@ -15,4 +17,6 @@ public interface PhotoModelInterface extends ModelInterface {
     PhotoSetModelInterface getPhotoSet();
 
     void setPhotoSet(PhotoSetModelInterface photoSet);
+
+    void map(PhotoEntity photoEntity);
 }
