@@ -1,7 +1,6 @@
 package monumemory.models.empty;
 
 import java.util.List;
-
 import monumemory.entities.MonumentEntity;
 import monumemory.models.MonumentModelInterface;
 import monumemory.models.PhotoSetModelInterface;
@@ -10,7 +9,7 @@ import monumemory.models.exceptions.CallMethodOnEmptyModelsListException;
 
 public class MonumentModelEmpty extends AbstractModelEmpty implements MonumentModelInterface {
 
-    MonumentModelEmpty(Integer id) {
+    public MonumentModelEmpty(Integer id) {
         super(id);
     }
 
