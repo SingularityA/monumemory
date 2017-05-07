@@ -2,9 +2,6 @@ package monumemory.models;
 
 import java.util.List;
 
-/**
- * @author SingularityA
- */
 public interface MonumentModelInterface extends ModelInterface {
 
     void setId(Integer id);

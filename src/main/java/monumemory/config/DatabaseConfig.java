@@ -12,9 +12,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
-/**
- * @author SingularityA
- */
 @Configuration
 @MapperScan("monumemory.dao")
 @PropertySource("classpath:database.properties")

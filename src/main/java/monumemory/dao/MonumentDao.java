@@ -4,9 +4,6 @@ import java.util.List;
 import monumemory.entities.MonumentEntity;
 import org.apache.ibatis.annotations.*;
 
-/**
- * @author SingularityA
- */
 @Mapper
 public interface MonumentDao {
     @Results(

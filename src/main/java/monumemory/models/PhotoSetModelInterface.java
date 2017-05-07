@@ -2,9 +2,6 @@ package monumemory.models;
 
 import java.util.List;
 
-/**
- * @author Singularity
- */
 public interface PhotoSetModelInterface extends ModelInterface {
 
     void setId(Integer id);

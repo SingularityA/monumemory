@@ -4,9 +4,6 @@ import java.util.List;
 import monumemory.entities.PhotoSetEntity;
 import org.apache.ibatis.annotations.*;
 
-/**
- * @author SingularityA
- */
 @Mapper
 public interface PhotoSetDao {
     @Results(

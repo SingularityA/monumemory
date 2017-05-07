@@ -2,9 +2,6 @@ package monumemory.entities;
 
 import lombok.Data;
 
-/**
- * @author SingularityA
- */
 @Data
 public class PhotoEntity {
 

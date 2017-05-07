@@ -1,8 +1,5 @@
 package monumemory.models;
 
-/**
- * @author SingularityA
- */
 public interface PhotoModelInterface extends ModelInterface {
 
     void setId(Integer id);
