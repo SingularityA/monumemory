@@ -39,7 +39,9 @@ public class PhotoSetsService {
         if (photoSetModel.getId() != null) {
             throw new InsertIdentifiedModelException();
         }
-        this.photoSetsDao.insert(this.map(photoSetModel));
+        final PhotoSetEntity photoSetEntity = this.map(photoSetModel);
+        this.photoSetsDao.insert(photoSetEntity);
+        photoSetModel.setId(photoSetEntity.getId());
     }
 
     public void update(PhotoSetModelInterface photoSetModel) {

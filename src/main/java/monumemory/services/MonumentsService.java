@@ -34,7 +34,9 @@ public class MonumentsService {
         if (monumentModel.getId() != null) {
             throw new InsertIdentifiedModelException();
         }
-        this.monumentsDao.insert(this.map(monumentModel));
+        final MonumentEntity monumentEntity = this.map(monumentModel);
+        this.monumentsDao.insert(monumentEntity);
+        monumentModel.setId(monumentEntity.getId());
     }
 
     public void update(MonumentModelInterface monumentModel) {
