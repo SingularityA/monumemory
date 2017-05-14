@@ -1,8 +1,7 @@
 package monumemory.models;
 
-import monumemory.entities.MonumentEntity;
-
 import java.util.List;
+import monumemory.entities.MonumentEntity;
 
 public interface MonumentModelInterface extends ModelInterface {
 
