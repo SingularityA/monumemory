@@ -11,7 +11,9 @@ html {
       nav(class:'top-nav light-green darken-3') {
         div(class:'container') {
           div(class:'nav-wrapper') {
-            a(class:'page-title', 'Momumemory')
+            a(class:'page-title', href: '/monuments/list/') {
+              yield 'Monumemory'
+            }
           }
         }
       }
@@ -36,13 +38,13 @@ html {
             }
             ul {
               li {
-                a(class:'grey-text text-lighten-3', href:"#!") {
-                  yield 'Link 1'
+                a(class:'grey-text text-lighten-3', href:"https://github.com/SingularityA/monumemory") {
+                  yield 'Our github project'
                 }
               }
               li {
-                a(class:'grey-text text-lighten-3', href:"#!") {
-                  yield 'Link 2'
+                a(class:'grey-text text-lighten-3', href:"http://www.apmath.spbu.ru/ru/") {
+                  yield 'Faculty of applied mathematics and control processes'
                 }
               }
             }
