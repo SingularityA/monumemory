@@ -49,7 +49,7 @@ content: contents {
       }
     }
   
-    button (class:'waves-effect waves-light btn-large right deep-purple darken-1') {
+    button (class:'waves-effect waves-light btn-large right deep-purple darken-1', type:'submit') {
       i (class:'material-icons left', 'save')
       yield (isNewModel ? 'Create' : 'Update')
     }
