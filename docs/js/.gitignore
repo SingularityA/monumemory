@@ -2,3 +2,5 @@
 !.gitignore
 !script.js
 !monument_form.js
+!photo_set_form.js
+!photo_set_view.js
