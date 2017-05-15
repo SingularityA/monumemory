@@ -15,5 +15,11 @@ INSERT INTO photo_sets (description, monument_id) VALUES
   ('Description_8', 4);
 
 INSERT INTO photos (name, path, photo_set_id) VALUES
-  ('Name_1', 'images/12345', 1),
-  ('Name_2', 'images/23456', 1);
+  ('Name_1', 'image1.jpeg', 1),
+  ('Name_2', 'image2.jpeg', 1),
+  ('Name_3', 'image3.jpeg', 1),
+  ('Name_4', 'image4.jpeg', 2),
+  ('Name_5', 'image5.jpeg', 2),
+  ('Name_6', 'image6.jpeg', 3),
+  ('Name_7', 'image7.jpeg', 3),
+  ('Name_8', 'image8.jpeg', 4);
