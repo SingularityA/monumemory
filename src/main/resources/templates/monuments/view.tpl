@@ -1,7 +1,7 @@
 layout 'layout/main.tpl',
 title:  'View Monument',
 content: contents {
-  h4(class:'header', 'Monument' + monument.name)
+  h4(class:'header', 'Monument ' + monument.name)
   div(class:'row') {}
   
   h5(class:'header', 'Description')
@@ -13,6 +13,10 @@ content: contents {
   h5(class:'header', 'History')
   div(class:'card-panel') {
     span(class:'brown-text text-darken-4', monument.history)
+  }
+  a (class:'waves-effect waves-light btn-large left deep-purple darken-1', href:sprintf(photoSetListUrl, monument.id)) {
+    i (class:'material-icons left', 'pageview')
+    yield 'View photosets'
   }
   a (class:'waves-effect waves-light btn-large right deep-purple darken-1', href:sprintf(monumentUpdateUrl, monument.id)) {
     i (class:'material-icons left', 'edit')
