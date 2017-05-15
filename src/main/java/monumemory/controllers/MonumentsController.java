@@ -11,6 +11,7 @@ import monumemory.models.PhotoSetModelInterface;
 import monumemory.services.MonumentsService;
 import monumemory.services.PhotoSetsService;
 import monumemory.services.PhotosService;
+import monumemory.storage.FileSystemStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +32,10 @@ public class MonumentsController extends AbstractCrudController {
     @Autowired
     private PhotosService photosService;
 
-    @GetMapping("")
+    @Autowired
+    private FileSystemStorageService storageService;
+
+    @GetMapping("list/")
     public String list(Model model) {
         final List<MonumentModelInterface> monumentModels = this.monumentsService.findAll();
         model.addAttribute("monuments", monumentModels);
@@ -41,10 +45,7 @@ public class MonumentsController extends AbstractCrudController {
     @GetMapping("{monumentId}/")
     public String view(Model model,
                        @PathVariable Integer monumentId) {
-        final MonumentModelInterface monumentModel = this.monumentsService.find(monumentId);
-        if (monumentModel == null) {
-            throw new NotFoundException();
-        }
+        final MonumentModelInterface monumentModel = getMonumentModel(monumentId);
         model.addAttribute("monument", monumentModel);
         return "monuments/view";
     }
@@ -70,18 +71,15 @@ public class MonumentsController extends AbstractCrudController {
             return "monuments/form";
         }
         final MonumentModelInterface monumentModel = getModelFromDto(monumentDto, null);
-        //System.out.println(monumentModel);
+
         this.monumentsService.insert(monumentModel);
-        return "redirect:/monuments/";
+        return "redirect:/monuments/list/";
     }
 
     @GetMapping("update/{monumentId}/")
     public String update(Model model,
                          @PathVariable Integer monumentId) {
-        final MonumentModelInterface monumentModel = this.monumentsService.find(monumentId);
-        if (monumentModel == null) {
-            throw new NotFoundException();
-        }
+        final MonumentModelInterface monumentModel = getMonumentModel(monumentId);
         final MonumentDto monumentDto = new MonumentDto();
         monumentDto.map(monumentModel);
 
@@ -104,20 +102,24 @@ public class MonumentsController extends AbstractCrudController {
             return "monuments/form";
         }
         final MonumentModelInterface monumentModel = getModelFromDto(monumentDto, monumentId);
-        //System.out.println(monumentModel);
+
         this.monumentsService.update(monumentModel);
         return "redirect:/monuments/{monumentId}/";
     }
 
     @PostMapping("delete/{monumentId}/")
     public String delete(Model model, @PathVariable Integer monumentId) {
+        final MonumentModelInterface monumentModel = getMonumentModel(monumentId);
+        deleteWithRelations(monumentModel);
+        return "redirect:/monuments/list/";
+    }
+
+    private MonumentModelInterface getMonumentModel(Integer monumentId) {
         final MonumentModelInterface monumentModel = this.monumentsService.find(monumentId);
         if (monumentModel == null) {
             throw new NotFoundException();
         }
-        //System.out.println(monumentModel);
-        deleteWithRelations(monumentModel);
-        return "redirect:/monuments/";
+        return monumentModel;
     }
 
     private MonumentModelInterface getModelFromDto(MonumentDto monumentDto, Integer monumentId) {
@@ -132,35 +134,11 @@ public class MonumentsController extends AbstractCrudController {
         for (PhotoSetModelInterface photoSetModel: photoSetModels) {
             final List<PhotoModelInterface> photoModels = this.photosService.findByPhotoSet(photoSetModel);
             for (PhotoModelInterface photoModel: photoModels) {
+                this.storageService.delete(photoModel.getPath());
                 this.photosService.delete(photoModel);
             }
             this.photoSetsService.delete(photoSetModel);
         }
         this.monumentsService.delete(monumentModel);
-    }
-
-    @ModelAttribute("monumentListUrl")
-    public String getMonumentsListUrl() {
-        return "/monuments/";
-    }
-
-    @ModelAttribute("monumentCreateUrl")
-    public String getMonumentCreateUrl() {
-        return "/monuments/create/";
-    }
-
-    @ModelAttribute("monumentViewUrl")
-    public String getMonumentViewUrl() {
-        return "/monuments/%d/";
-    }
-
-    @ModelAttribute("monumentUpdateUrl")
-    public String getMonumentUpdateUrl() {
-        return "/monuments/update/%d/";
-    }
-
-    @ModelAttribute("monumentDeleteUrl")
-    public String getMonumentDeleteUrl() {
-        return "/monuments/delete/%d/";
     }
 }
